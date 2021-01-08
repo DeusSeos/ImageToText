@@ -15,7 +15,9 @@ def function(data, ret):
 
 def converter(data, ret):
     pt.pytesseract.tesseract_cmd = (r'C:\Program Files\Tesseract-OCR\tesseract')
-    ret.put((data[0], pt.image_to_string(data[1])))
+    img = Image.open(data[1])
+    res = pt.image_to_string(img)
+    ret.put((data[0], res))
     # print(f"Finshed Convert Task for {data[0]}")
 
 
@@ -27,7 +29,7 @@ if __name__ == '__main__':
     fileList = os.listdir(path_screenshot)
 
     workQueue = queue.Queue()
-    results = mp.Queue()
+    results = mp.Queue(10)
     processes = []
     orderID = 0
 
@@ -36,8 +38,8 @@ if __name__ == '__main__':
     for file in fileList:
         if pattern.match(file):
             filePath = path_screenshot + '\\' + file
-            img = Image.open(filePath)
-            workQueue.put((orderID, img))
+            # img = Image.open(filePath)
+            workQueue.put((orderID, filePath))
             orderID += 1
 
     delay = 0
