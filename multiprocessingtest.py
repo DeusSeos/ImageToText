@@ -43,8 +43,6 @@ if __name__ == '__main__':
         value = results.get()
         content.insert(value[0], value[1])
 
-
-
     end = time.perf_counter()
 
     print(f"Finished in {end-start} second(s)")

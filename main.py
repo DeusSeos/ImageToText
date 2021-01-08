@@ -45,8 +45,8 @@ line = line.replace(':', '')
 path_project = r'C:\Users\mille\PycharmProjects\ImageToText'
 os.rename(file.name, path_project + '\\' + line + '.txt')
 
-for f in fScreenshot:
-    os.remove(f)
+# for f in fScreenshot:
+#     os.remove(f)
 
 end_time = time.time()
 
